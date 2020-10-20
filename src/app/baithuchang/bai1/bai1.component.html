@@ -1,0 +1,74 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Tìm kiếm</a>
+</nav>
+<div>
+    <div class="p-grid">
+        <div class="p-col-6">
+            <div class="p-col-6 p-offset-3">
+                <div class="p-inputgroup">
+                    <span for="staticEmail" class="col-sm-2 col-form-label">Nhóm danh mục</span>
+                    <p-dropdown inputId="dropdown" [autoDisplayFirst]="false" [options]="cities1" [(ngModel)]="selectedCities1" optionLabel="name"></p-dropdown>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="p-grid">
+        <div class="p-col-6">
+            <div class="p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                    <span for="staticEmail" class="col-sm-2 col-form-label">Ngày tạo bắt đầu</span>
+                    <p-calendar [locale]="en" dateFormat="dd/mm/yy" icon="pi pi-calendar" [(ngModel)]="dateValue1"></p-calendar>
+                </div>
+            </div>
+        </div>
+        <div class="p-col-6">
+            <div class="p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                    <span for="staticEmail" class="col-sm-2 col-form-label">Ngày tạo kết thúc</span>
+                    <p-calendar [locale]="en" dateFormat="dd/mm/yy" [(ngModel)]="dateValue2"></p-calendar>
+                </div>
+            </div>
+        </div>
+        <div class="p-col-6">
+            <div class="p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                    <span for="staticEmail" class="col-sm-2 col-form-label">Nội dung</span>
+                    <input type="text" pInputText [(ngModel)]="txtnoidung" />
+                </div>
+            </div>
+        </div>
+        <div class="p-col-6">
+            <button pButton type="button" (click)="search()" label="Tìm kiếm" icon="pi pi-search" iconPos="left"></button>
+        </div>
+    </div>
+</div>
+<br>
+<div class="card">
+    <h5>Danh sách đề tài</h5>
+    <p-table [value]="catagoris" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>STT</th>
+                <th>Tiêu đề tin</th>
+                <th>Danh mục</th>
+                <th>Ngày phát hành</th>
+                <th>Tác giả</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-catagori>
+            <tr>
+                <td>{{catagori.id}}</td>
+                <td>{{catagori.tieude}}</td>
+                <td>{{catagori.danhmuc}}</td>
+                <td>{{catagori.ngaytaodenngay}}</td>
+                <td>{{catagori.url}}</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+        </ng-template>
+    </p-table>
+</div>
